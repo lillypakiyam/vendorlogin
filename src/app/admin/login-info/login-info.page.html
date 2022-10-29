@@ -3,7 +3,7 @@
   </ion-header>
 
 
-  <ion-content>
+  <ion-content *ngIf="!textarea">
 
     <ion-grid style="margin-top: 30px;">
       <ion-row class="row1">
@@ -61,18 +61,18 @@
             </ion-col>
           </ion-row>
           <ion-row class="back" style="
-padding: 5px;margin-top: 2px;text-align: center;justify-content: start;color: black;font-weight: bold;">Login information:</ion-row>       
+    padding: 5px;margin-top: 2px;text-align: center;justify-content: start;color: black;font-weight: bold;">Login information:</ion-row>       
 
 
 <div class="login" style="margin-top: 2px;">
   <ion-row class="wholeclass">
     <ion-col class="back" size="4">
       <ion-label style="text-align: right;">
- Vendor ID:
+        Vendor ID:
       </ion-label>
     </ion-col>
     <ion-col size="8">
-     <ion-label>4000021330</ion-label>
+     <ion-label>{{data.temporaryId}}</ion-label>
     </ion-col>
   </ion-row>
   <ion-row class="wholeclass" style="margin-top: 2px;">
@@ -82,17 +82,17 @@ padding: 5px;margin-top: 2px;text-align: center;justify-content: start;color: bl
       </ion-label>
     </ion-col>
     <ion-col size="8">
-   <ion-label>4000021330</ion-label>
+   <ion-label>{{data.temporaryId}}</ion-label>
     </ion-col>
   </ion-row>
   <ion-row class="wholeclass" style="margin-top: 2px;">
     <ion-col class="back" size="4">
       <ion-label style="text-align: right;">
-Password Reset:
+   Password Reset:
       </ion-label>
     </ion-col>
     <ion-col size="8">
-    <ion-label>Yes</ion-label>
+    <ion-label>{{data.Confirm_new_password !== null ? 'Yes': 'No'}}</ion-label>
     </ion-col>
   </ion-row>
   <ion-row class="wholeclass" style="margin-top: 2px;">
@@ -102,7 +102,7 @@ Login Level:
       </ion-label>
     </ion-col>
     <ion-col size="8">
-    <ion-label>4 (Edited bank details)</ion-label>
+    <ion-label>{{data.login_level}}</ion-label>
     </ion-col>
   </ion-row>
   <ion-row class="wholeclass" style="margin-top: 2px;">
@@ -132,7 +132,7 @@ Last Login:
       </ion-label>
     </ion-col>
     <ion-col size="8">
-    <ion-label>0000-00-00 00:00:00</ion-label>
+    <ion-label>{{data.login_date}}</ion-label>
     </ion-col>
   </ion-row>
 
@@ -239,7 +239,7 @@ Phone
     </ion-col>
   </ion-row>
 
-  <ion-row style="margin-top: 2px;">
+  <!-- <ion-row style="margin-top: 2px;">
     <ion-col class="background" size="3">
       <ion-label>
 Ordering address
@@ -265,9 +265,9 @@ baltimore
 19725246052
       </ion-label>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 
-  <ion-row style="margin-top: 2px;">
+  <!-- <ion-row style="margin-top: 2px;">
     <ion-col class="background" size="3">
       <ion-label>
 Company registration address
@@ -293,7 +293,7 @@ baltimore
 19725246052
       </ion-label>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
   <ion-row style="margin-top: 2px;">
     <ion-col class="background" size="3">
       <ion-label>
@@ -302,26 +302,27 @@ Ordering address
     </ion-col>
     <ion-col class="background back1" size="3">
       <ion-label class="highlight1" style="text-transform: uppercase;">
-on computer services, llc
+             {{data.companyname}}
              </ion-label>
     </ion-col>
     <ion-col class="background back1" size="3">
       <ion-label style="text-transform:uppercase;">
-9351  philadelphia road, suite
+         {{data.Address}}
       </ion-label>
     </ion-col>
     <ion-col class="background back1" size="1">
       <ion-label style="text-transform:capitalize;">
-baltimore
+{{data.city}}
       </ion-label>
     </ion-col>
     <ion-col class="background back1" size="2">
       <ion-label>
-19725246052
+{{data.ph_no}}
       </ion-label>
     </ion-col>
   </ion-row>
-  <ion-row style="margin-top: 2px;">
+
+  <!-- <ion-row style="margin-top: 2px;">
     <ion-col class="background" size="3">
       <ion-label>
 Invoicing address
@@ -375,6 +376,7 @@ baltimore
       </ion-label>
     </ion-col>
   </ion-row>
+   -->
   <ion-row class="back" style="
  margin-top: 2px;height: 30px;"></ion-row>   
 <br>
@@ -407,6 +409,18 @@ baltimore
     <ion-label>
       No contacts found
     </ion-label>
+    <ion-col></ion-col>
+    <ion-col>
+      <ion-label>{{data.first_name}}</ion-label>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <ion-label>{{data.V_email}}</ion-label>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <ion-label>{{data.ph_no}}</ion-label>
+    </ion-col>
   </ion-row>
   <ion-row  class="back" style="">
     <ion-col>
@@ -419,6 +433,7 @@ baltimore
     </ion-col>
   </ion-row>
 <br>
+
 <ion-row class="back" style="
   padding: 5px;margin-top: 2px;text-align: center;justify-content: start;color: black;font-weight: bold;">Bank Details Summary:</ion-row>   
 
@@ -447,17 +462,17 @@ baltimore
 <ion-row class="background" style="margin-top: 2px;text-align-last: start;">
   <ion-col >
     <ion-label>
-     United States
+     {{data.country}}
     </ion-label>
   </ion-col>
 <ion-col class="back-col">
 <ion-label>
- CIBC BANK USA
+ {{data.bank_name}}
 </ion-label>
 </ion-col>
 <ion-col class="back-col">
 <ion-label class="highlight1">
-0002279061
+{{data.account}}
 </ion-label>
 </ion-col>
 <ion-col class="back-col">
@@ -499,15 +514,15 @@ baltimore
 </ion-label>
 </ion-col>
 </ion-row>
-<ion-row class="background" style="margin-top: 2px;text-align-last: start;">
+<ion-row class="background" style="margin-top: 2px;text-align-last: start;" *ngFor="let tax of taxDetails">
   <ion-col size="8" class="back-col">
     <ion-label>
-    USA: Employer ID Number
+    {{ tax.Tax_number_type}}
     </ion-label>
   </ion-col>
 <ion-col class="back-col" size="4">
 <ion-label class="highlight1">
- 56-2379512
+  {{ tax.Tax_number}}
 </ion-label>
 </ion-col>
 </ion-row>
@@ -540,6 +555,12 @@ baltimore
     Download
   </ion-label>
 </ion-col>
+</ion-row>
+
+<ion-row>
+<ion-col></ion-col>
+<ion-col> {{data.Formtype}} </ion-col>
+<ion-col></ion-col>
 </ion-row>
 <br>
 <ion-row  class="back" style="">
@@ -599,13 +620,41 @@ Agreed
     </ion-label>
     </ion-col>
 </ion-row>
-
+<ion-row  class="back" style="">
+  <ion-col style="justify-content: left;">
+    <ion-button class="btnLogin"style="font-weight:bold;" (click)="showtextarea()">
+    Review</ion-button> 
+  </ion-col>
+  <ion-col>
+  </ion-col>
+  <ion-col>
+    <ion-button class="btnLogin"style="font-weight:bold;" (click)="approveDetail()">
+      Approve</ion-button> 
+  </ion-col>
+</ion-row>
 </div>
 
   </ion-col>
       </ion-row>
     </ion-grid>
   
+  </ion-content>
+  <ion-content *ngIf="textarea" >
+    <ion-textarea [(ngModel)]="message" style="width: 100%;border: 1px solid lightgray;height: 100px;margin: 10px;">
+
+    </ion-textarea>
+    <ion-row  class="back" style="">
+      <ion-col style="justify-content: left;">
+      </ion-col>
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <ion-button class="btnLogin"style="font-weight:bold;" (click)="showtextarea()">
+          back</ion-button> 
+        <ion-button class="btnLogin"style="font-weight:bold;" (click)="sendVendorEmail()">
+          Send</ion-button> 
+      </ion-col>
+    </ion-row>
   </ion-content>
   
   <ion-footer style="position: relative;">

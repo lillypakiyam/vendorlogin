@@ -180,12 +180,12 @@ let AddvendorPage = class AddvendorPage {
     // const email = new email.send()
     Email.send({
       Host: "smtp.elasticemail.com",
-      Username: "lilypackiyam@gmail.com",
-      Password: "0527721E803854F2C924B66A3BAEAE2A03B2",
+      Username: "vendordeveloper22@gmail.com",
+      Password: "EBB99C1A1A1C71FFE9E6F9EE64F38E041E20",
       // To : document.getElementById('requestEmail').value,
       To: this.company.requestEmail,
-      From: 'lilypackiyam@gmail.com',
-      Subject: "This is the subject",
+      From: 'vendordeveloper22@gmail.com',
+      Subject: "vendor account",
       Body: `${'we have created a new vendor account for you.Here is the link to activate the account.'}
                  Link: 'https://vendorweb-f72c9.web.app/pages/login',
                  Temporary Id : ${this.numberId},
@@ -236,7 +236,64 @@ let AddvendorPage = class AddvendorPage {
       invite_Date: this.TodayDate,
       login_date: null,
       invited_by: this.loggedInAdmin.email,
-      login_level: null
+      invited_name: this.loggedInAdmin.name,
+      login_level: null,
+      delete_date: null,
+      Current_password: null,
+      New_password: null,
+      Confirm_new_password: null,
+      Address: null,
+      Company_name: null,
+      former_name: null,
+      V_email: null,
+      confim_email: null,
+      street: null,
+      country: null,
+      house: null,
+      street2: null,
+      postal_code: null,
+      city: null,
+      po_postal: null,
+      po_Box: null,
+      district: null,
+      region_state: null,
+      ph_no: null,
+      fax_no: null,
+      // 2page
+      first_name: null,
+      last_name: null,
+      relationship_type: null,
+      contact_email: null,
+      phone_no: null,
+      faxno: null,
+      Iban_country: null,
+      iban: null,
+      account: null,
+      bank_code: null,
+      bank_name: null,
+      ibanStreet: null,
+      ibanCity: null,
+      swift_bic: null,
+      currency: null,
+      document: null,
+      Category: null,
+      Subcategory: null,
+      Tax_check: null,
+      reason: null,
+      Tax_number_type: null,
+      Tax_number: null,
+      tax_Details: [],
+      Taxform_check: null,
+      Formtype: null,
+      Taxform_upload: null,
+      SES_VSCform_upload: null,
+      AgreeCheck: false,
+      Note: null,
+      first_agree: false,
+      sec_agree: false,
+      completed: false,
+      approved: false,
+      permenantId: null
     };
     console.log(this.emailId, this.randomId);
     this.fireauth.createAccount(this.emailId, this.randomId).then(user => {
@@ -266,8 +323,6 @@ let AddvendorPage = class AddvendorPage {
       this.NewPassword();
     }, /*#__PURE__*/function () {
       var _ref2 = (0,D_website_vendor_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* (err) {
-        // if(this.company.requestEmail.length !==0){
-        // }
         if (_this.company.companyname.length === 0 && _this.company.companyEmail.length === 0 && _this.company.requestEmail.length === 0) {
           _this.NewPassword();
         } else {

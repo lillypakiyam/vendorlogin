@@ -62,7 +62,8 @@ export class LoginPage implements OnInit {
   moveTo(){
     // this.createAccount(this.user.email, this.user.password).then(user=>{
     //   console.log('user',user)
-    // })
+      console.log(this.user.email, this.user.password)
+      // })
     this.authentication.login(this.user.email, this.user.password).then(res =>{
       console.log(res)
       console.log(res.uid)
@@ -151,8 +152,10 @@ export class LoginPage implements OnInit {
   }
 
   forgetpassword(){
-    this.util.goForward('admin/password')
-    
+    // this.util.goForward('admin/password')
+    this.forgetpass =true
+    this.backlog =false
+    console.log('res')
   }
 
   async backlogin(){
@@ -160,6 +163,14 @@ export class LoginPage implements OnInit {
     this.forgetpass = false
     // const toast = await this.api.createToast('Link sent your email, please check the spam folder in your mail', false, 'top');
     //   await toast.present();
+  }
+
+  async sendEmail(){
+    this.authentication.forgotPassoword(this.user.email)
+    this.backlog= true
+    this.forgetpass = false
+    const toast = await this.api.createToast('Link sent your email, please check your mail', false, 'top');
+      await toast.present();
   }
   moveToLog(){
     this.router.navigate(['admin/signup']);

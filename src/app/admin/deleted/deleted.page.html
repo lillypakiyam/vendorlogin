@@ -101,46 +101,51 @@ Deleted by
       </ion-col>
     </ion-row>
 
-    <ion-row style="margin-top: 2px;">
+    <ion-row style="margin-top: 2px;" *ngFor="let dele of deleteVendor">
       <ion-col class="background" size="2">
         <ion-label style="text-transform: uppercase;">
- temp002861
+ <!-- temp002861 -->
+    {{dele.temporaryId}}
         </ion-label>
       </ion-col>
       <ion-col class="background back" size="3" (click)="moveToCP()">
         <ion-label style="text-transform: uppercase;">
-sanderspanenburg,
+<!-- sanderspanenburg, -->
+    {{dele.companyname}}
                </ion-label>
 
-<p style="margin-top: -2px;">sanderspanenburg@gmail.com</p>              
+<p style="margin-top: -2px;">{{dele.companyEmail}}</p>              
 </ion-col>
       <ion-col class="background back" size="1">
         <ion-label>
-2019-02-12 10:03:25
+<!-- 2019-02-12 10:03:25 -->
+     {{dele.invite_Date}}
         </ion-label>
       </ion-col>
       <ion-col class="background back" size="1">
         <ion-label style="text-transform:capitalize;">
-Bhavanee
+{{dele.invited_name}}
         </ion-label>
       </ion-col>
       
       <ion-col class="background back" size="3">
         <ion-label>
-matthijis.holstein@ses.com
+<!-- matthijis.holstein@ses.com -->
+ {{dele.requestEmail}}
         </ion-label>
       </ion-col>
       <ion-col class="back background" size="1" >
-<ion-label>2020-06-24 11:22:46</ion-label>
+<ion-label>{{dele.delete_date}}</ion-label>
       </ion-col>
       <ion-col class="back background" size="1" >
         <ion-label style="text-transform: capitalize;">
-          Bhavanee
+          {{dele.delete_name}}
+
         </ion-label>
               </ion-col>
     </ion-row>
 
-    <ion-row style="margin-top: 2px;">
+    <!-- <ion-row style="margin-top: 2px;">
       <ion-col class="background1" size="2">
         <ion-label style="text-transform: uppercase;">
  temp002861
@@ -176,7 +181,7 @@ sanderspanenburg,
           Bhavanee
         </ion-label>
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 
   
     

@@ -15,6 +15,7 @@ export class InvitedvendorsPage implements OnInit {
   public vendordate:any=[];
   public vendorName:any=[];
   public vendorid:any=[];
+  public tempId:any=[];
   constructor(private router: Router,
               private util: UtilService,
               private api: ApiService,) { 
@@ -23,7 +24,18 @@ export class InvitedvendorsPage implements OnInit {
                   this.vendorInvite=user
                   this.vendorName.push(user)
                   console.log(this.vendorInvite)
+                  console.log(this.vendorName)
+                 
+                  this.vendorName.forEach(res =>{
+                    res.map(data =>
+                  {
+                    this.vendorid.push(data.companyname)
+                    this.tempId.push(data.temporaryId)
+                    // console.log(data.companyname.toLowerCase().indexOf(eve.srcElement.value.toLowerCase())>-1)
+                  })
+                 }) 
                  })
+
               }
 
   ngOnInit() {
@@ -88,16 +100,20 @@ export class InvitedvendorsPage implements OnInit {
   }
 
   searchElement(eve){
-    // console.log(eve, eve.srcElement.value)
-    this.vendorName.forEach(res =>{
-          res.map(data =>
-        {
-          this.vendorid.push(data.companyname)
-          console.log(this.vendorid)
-          console.log(data.companyname.toLowerCase().indexOf(eve.srcElement.value.toLowerCase())>-1)
-        })
-      // return res.toLowerCase().indexOf(eve.srcElement.value.toLowerCase()) > -1;
-    })  
+    let result:any=[...this.vendorid]
+          const query = eve.target.value.toLowerCase();
+         result = this.vendorid.filter(d => 
+            d.toLowerCase().indexOf(query) > -1
+            );
+      console.log(result)
+
+    // let temprid:any=[...this.tempId]
+    // let vendorids= eve.target.value.toLowerCase();
+    // temprid = this.tempId.filter(ids =>
+    //   // console.log(ids.toUpperCase())
+    //   ids.toUpperCase().indexOf(vendorids)> -1
+    //   )
+    //   console.log(temprid)
   }
 
   vendorinfo(data){

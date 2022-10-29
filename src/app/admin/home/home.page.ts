@@ -13,7 +13,7 @@ export class HomePage implements OnInit {
   constructor(public router:Router,
               private inituser:InituserService, 
                public api: ApiService) { 
-                console.log(this.api.loginUserId)
+                // console.log(this.api.loginUserId)
                }
 
   ngOnInit() {

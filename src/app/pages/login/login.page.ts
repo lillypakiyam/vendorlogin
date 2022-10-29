@@ -27,8 +27,8 @@ export class LoginPage implements OnInit {
                 // this.api.getoneVendoruser().subscribe(user=>{
                 //   console.log(user)
                 // })
-           this.loggedinVendor = this.initUser.getVendorData()
-           console.log(this.loggedinVendor)
+               this.loggedinVendor = this.initUser.getVendorData()
+               console.log(this.loggedinVendor)
 
               }
 

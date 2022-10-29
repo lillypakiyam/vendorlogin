@@ -109,20 +109,18 @@ export class AdministorAccountsPage implements OnInit {
     // const email = new email.send()
     Email.send({
         Host : "smtp.elasticemail.com",
-        Username : "lilypackiyam@gmail.com",
-        Password : "0527721E803854F2C924B66A3BAEAE2A03B2",
+        Username : "vendordeveloper22@gmail.com",
+        Password : "EBB99C1A1A1C71FFE9E6F9EE64F38E041E20",
         // To : document.getElementById('requestEmail').value,
         To : this.vendoruser.email,
-        From : 'lilypackiyam@gmail.com',
-        Subject : "This is the subject",
-        Body : `${'we have created a new vendor account for you.Here is the link to activate the account.'}
+        From : 'vendordeveloper22@gmail.com',
+        Subject : "admin account",
+        Body : `${'we have created a new admin account for you.Here is the link to activate the account.'}
                  Link: 'https://vendorweb-f72c9.web.app/admin/login'
                  userName : ${this.vendoruser.email},
                  password : ${this.vendoruser.password}
-                 
                  `,
                  
-     
     }).then(message =>{
       // alert('message sent')
       console.log(message)

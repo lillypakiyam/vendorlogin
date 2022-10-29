@@ -121,6 +121,10 @@ export class ApiService {
     return this.firestore.findAlldr('vendorAdd')
   }
 
+  getalldeleVendor(): Observable<any>{
+    return this.firestore.findAlldr('deleteVendor')
+  }
+
   // sendEmail(data: any[]) {
   //   return this.http.post(this.apiUrl+'lilypackiyam@gmail.com', data);
   // }

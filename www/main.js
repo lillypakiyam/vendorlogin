@@ -124,17 +124,16 @@ let AdministorAccountsPage = class AdministorAccountsPage {
     // const email = new email.send()
     Email.send({
       Host: "smtp.elasticemail.com",
-      Username: "lilypackiyam@gmail.com",
-      Password: "0527721E803854F2C924B66A3BAEAE2A03B2",
+      Username: "vendordeveloper22@gmail.com",
+      Password: "EBB99C1A1A1C71FFE9E6F9EE64F38E041E20",
       // To : document.getElementById('requestEmail').value,
       To: this.vendoruser.email,
-      From: 'lilypackiyam@gmail.com',
-      Subject: "This is the subject",
-      Body: `${'we have created a new vendor account for you.Here is the link to activate the account.'}
+      From: 'vendordeveloper22@gmail.com',
+      Subject: "admin account",
+      Body: `${'we have created a new admin account for you.Here is the link to activate the account.'}
                  Link: 'https://vendorweb-f72c9.web.app/admin/login'
                  userName : ${this.vendoruser.email},
                  password : ${this.vendoruser.password}
-                 
                  `
     }).then(message => {
       // alert('message sent')
@@ -428,7 +427,7 @@ const routes = [
     },
     {
         path: 'admin/password',
-        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_admin_password_password_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./admin/password/password.module */ 66062)).then(m => m.PasswordPageModule)
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_admin_password_password_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./admin/password/password.module */ 66062)).then(m => m.PasswordPageModule)
     },
     {
         path: 'admin/vendor-info',
@@ -436,7 +435,7 @@ const routes = [
     },
     {
         path: 'admin/login-info',
-        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_admin_login-info_login-info_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./admin/login-info/login-info.module */ 45310)).then(m => m.LoginInfoPageModule)
+        loadChildren: () => Promise.all(/*! import() */[__webpack_require__.e("common"), __webpack_require__.e("src_app_admin_login-info_login-info_module_ts")]).then(__webpack_require__.bind(__webpack_require__, /*! ./admin/login-info/login-info.module */ 45310)).then(m => m.LoginInfoPageModule)
     },
     {
         path: 'admin/top-level',
@@ -445,6 +444,14 @@ const routes = [
     {
         path: 'admin/purchase-order',
         loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_admin_purchase-order_purchase-order_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./admin/purchase-order/purchase-order.module */ 38827)).then(m => m.PurchaseOrderPageModule)
+    },
+    {
+        path: 'admin/deleted',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_admin_deleted_deleted_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./admin/deleted/deleted.module */ 81008)).then(m => m.DeletedPageModule)
+    },
+    {
+        path: 'admin/deletedvendor',
+        loadChildren: () => __webpack_require__.e(/*! import() */ "src_app_admin_deletedvendor_deletedvendor_module_ts").then(__webpack_require__.bind(__webpack_require__, /*! ./admin/deletedvendor/deletedvendor.module */ 35369)).then(m => m.DeletedvendorPageModule)
     },
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -495,20 +502,16 @@ let AppComponent = class AppComponent {
         this.loggedinUser = this.initUser.getUserData();
         this.loggedinVendor = this.initUser.getVendorData();
         console.log(this.loggedinUser);
-        console.log(this.loggedinVendor);
         if (this.loggedinUser.id !== null) {
-            // if(this.loggedinUser.email === null){
-            //   this.util.goToNew('admin/login')
-            // }else{
-            //   this.util.goToNew('admin/home')
-            // }
+            if (this.loggedinUser.email === null) {
+                this.util.goToNew('admin/login');
+            }
+            else {
+                this.util.goToNew('admin/home');
+            }
         }
         else {
-            // this.util.goToNew('pages/login')
-            // if(this.loggedinVendor.requestEmail !== null){
-            //   this.util.goToNew('pages/password-change')
-            //   // this.util.goToNew('pages/vendor-profile')
-            // }
+            this.util.goToNew('admin/login');
         }
         // if (this.loggedinVendor.id !==null){
         //   if(this.loggedinVendor.requestEmail === null){
@@ -749,6 +752,10 @@ let ApiService = class ApiService {
 
   getallVendor() {
     return this.firestore.findAlldr('vendorAdd');
+  }
+
+  getalldeleVendor() {
+    return this.firestore.findAlldr('deleteVendor');
   } // sendEmail(data: any[]) {
   //   return this.http.post(this.apiUrl+'lilypackiyam@gmail.com', data);
   // }
@@ -957,10 +964,15 @@ let FirebaseAuthenticationService = class FirebaseAuthenticationService {
         });
     }
     forgotPassoword(email) {
-        this.fireauth.sendPasswordResetEmail(email).then((pass) => {
-            // console.log('pass',pass)
-            // alert(pass)
-            alert("Password reset Link sent to your email, please your mail ");
+        return new Promise((resolve, rejected) => {
+            this.fireauth.sendPasswordResetEmail(email).then((pass) => {
+                // console.log('pass',pass)
+                resolve(pass);
+                // alert(pass)
+                alert("Password reset Link sent to your email, please your email");
+            }).catch(err => {
+                rejected(err);
+            });
         });
         // .catch(err => this.util.presentToast(`${err}`, true, 'bottom', 2100));
     }
@@ -1042,6 +1054,10 @@ let FirestoreService = class FirestoreService {
 
   update(collection, id, document) {
     return this.Angularfire.doc(`${collection}/${id}`).update(this.updateCreated(document));
+  }
+
+  delete(collection, id) {
+    return this.Angularfire.doc(`${collection}/${id}`).delete();
   }
 
   findAlldr(collection) {

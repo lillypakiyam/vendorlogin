@@ -109,7 +109,7 @@ let HomePage = class HomePage {
         this.router = router;
         this.inituser = inituser;
         this.api = api;
-        console.log(this.api.loginUserId);
+        // console.log(this.api.loginUserId)
     }
     ngOnInit() {
     }

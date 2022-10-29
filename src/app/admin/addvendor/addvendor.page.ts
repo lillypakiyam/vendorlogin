@@ -85,19 +85,18 @@ export class AddvendorPage implements OnInit {
     // const email = new email.send()
     Email.send({
         Host : "smtp.elasticemail.com",
-        Username : "lilypackiyam@gmail.com",
-        Password : "0527721E803854F2C924B66A3BAEAE2A03B2",
+        Username : "vendordeveloper22@gmail.com",
+        Password : "EBB99C1A1A1C71FFE9E6F9EE64F38E041E20",
         // To : document.getElementById('requestEmail').value,
         To : this.company.requestEmail,
-        From : 'lilypackiyam@gmail.com',
-        Subject : "This is the subject",
+        From : 'vendordeveloper22@gmail.com',
+        Subject : "vendor account",
         Body : `${'we have created a new vendor account for you.Here is the link to activate the account.'}
                  Link: 'https://vendorweb-f72c9.web.app/pages/login',
                  Temporary Id : ${this.numberId},
                  password : ${this.randomId}
                  `,
                  
-     
     }).then(message =>{
       alert('message sent')
       console.log(message)
@@ -138,7 +137,70 @@ export class AddvendorPage implements OnInit {
       invite_Date: this.TodayDate,
       login_date: null,
       invited_by: this.loggedInAdmin.email,
+      invited_name: this.loggedInAdmin.name,
       login_level:null,
+      delete_date:null,
+
+      Current_password:null,
+      New_password:null,
+      Confirm_new_password:null,
+      Address: null,
+      Company_name: null,
+      former_name: null,
+      V_email:null,
+      confim_email: null,
+      street:null,
+      country: null,
+      house: null,
+      street2:null,
+      postal_code: null,
+      city:null,
+      po_postal:null,
+      po_Box:null,
+      district:null,
+      region_state:null,
+      ph_no:null,
+      fax_no:null,
+
+     // 2page
+      first_name: null,
+      last_name: null,
+      relationship_type:null,
+      contact_email:null,
+      phone_no:null,
+      faxno:null,
+      
+      Iban_country:null,
+      iban:null,
+      account:null,
+      bank_code:null,
+      bank_name:null,
+      ibanStreet:null,    
+      ibanCity:null,
+      swift_bic:null ,    
+      currency:null,
+      document:null,
+ 
+      Category:null,
+      Subcategory:null,
+ 
+     Tax_check:null,
+     reason:null,
+     Tax_number_type:null,
+     Tax_number:null,
+     tax_Details:[],
+     Taxform_check:null,
+     Formtype:null,
+     Taxform_upload:null,
+     SES_VSCform_upload:null,
+ 
+     AgreeCheck:false,
+     Note:null,
+     first_agree: false,
+     sec_agree: false,
+     completed: false,
+     approved: false,
+     permenantId:null,
     }
     console.log(this.emailId, this.randomId)
     this.fireauth.createAccount(this.emailId,this.randomId).then(user=>{
@@ -159,15 +221,13 @@ export class AddvendorPage implements OnInit {
         });  
 
         this.util.goForward('admin/addvendor')
-        this.NewPassword()
+        this.NewPassword();
         
       }, async err =>{
-      // if(this.company.requestEmail.length !==0){
-       
-      // }
+    
       if(this.company.companyname.length ===0 && this.company.companyEmail.length ===0 && this.company.requestEmail.length ===0){
         this.NewPassword()
-      }else{
+       }else{
         const toast = await this.api.createToast('the email id is already use in by another account', false, 'top');
         await toast.present();
 
@@ -175,7 +235,6 @@ export class AddvendorPage implements OnInit {
          this.NewPassword()
         }
       }
-
     })
 
   }

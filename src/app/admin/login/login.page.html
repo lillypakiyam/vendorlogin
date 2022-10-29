@@ -2,7 +2,7 @@
   <ion-img src="assets/logo.png" class="img"></ion-img>
   </ion-header>
 
-<ion-content>
+<ion-content *ngIf="!forgetpass">
   <ion-grid>
     <ion-row class="row1">
       <ion-col size="6" class="content1">
@@ -51,6 +51,69 @@
     <ion-col size="8"></ion-col>
     <ion-col size="4">
       <ion-button class="btnLogin" (click)="moveTo()">Login
+        <ion-icon name="chevron-forward"></ion-icon>
+        <ion-icon name="chevron-forward" style="margin-left: -10px;"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+</div>
+
+</ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+
+<!-- password Email -->
+<ion-content *ngIf="!backlog">
+  <ion-grid>
+    <ion-row class="row1">
+      <ion-col size="6" class="content1">
+        <ion-label class="menu" (click)="backlogin()">back</ion-label>
+        <br>
+        <br>
+        <!-- <ion-label class="menu" (click)="forgetpassword()">Forget Password</ion-label> -->
+        <!-- <ion-label class="menu" (click)="backlogin()">back login</ion-label> -->
+        <br>
+        <br>
+      </ion-col>
+      <ion-col size="6" class="content2">
+        <h4 style="">Welcome to the SES Vendor Management website!</h4>
+        <br>
+        <br>
+        <h4 style="">Please enter your administration login and password.</h4>
+        <!-- <h4 style="" *ngIf="!backlog">Please enter your Email.</h4> -->
+        <br>
+<div class="login" style="margin-top: 2px;">
+
+  <ion-row class="wholeclass" style="margin-top: 2px;width: 500px;">
+    <ion-col class="back" size="3">
+      <ion-label style="text-align: right;color: red;">
+        Email ID:
+      </ion-label>
+    </ion-col>
+    <ion-col size="9">
+     <ion-input type="email" class="input" [(ngModel)]="user.email"></ion-input>
+    </ion-col>
+  </ion-row>
+  
+  <!-- <ion-row class="wholeclass" style="margin-top: 2px;width: 500px;">
+    <ion-col class="back" size="3">
+      <ion-label style="text-align: right;color: red;">
+        Password:
+      </ion-label>
+    </ion-col>
+    <ion-col size="9">
+     <ion-input class="input" type="password" [(ngModel)]="user.password"></ion-input>
+    </ion-col>
+  </ion-row> -->
+ 
+  <ion-row class="back" style="margin-top: 2px;justify-content: end;width: 500px;">
+    <ion-col size="8"></ion-col>
+    <ion-col size="4">
+      <ion-button class="btnLogin" (click)="sendEmail()">send
         <ion-icon name="chevron-forward"></ion-icon>
         <ion-icon name="chevron-forward" style="margin-left: -10px;"></ion-icon>
       </ion-button>

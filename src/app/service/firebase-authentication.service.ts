@@ -70,13 +70,16 @@ export class FirebaseAuthenticationService {
   }
 
   public forgotPassoword(email: string) {
-   
-    this.fireauth.sendPasswordResetEmail(email).then((pass) => {
-      // console.log('pass',pass)
-      // alert(pass)
-      alert("Password reset Link sent to your email, please your mail ")
-
-    })
+    return new Promise((resolve, rejected) =>{
+      this.fireauth.sendPasswordResetEmail(email).then((pass) => {
+        // console.log('pass',pass)
+        resolve(pass)
+        // alert(pass)
+        alert("Password reset Link sent to your email, please your email")
+      }).catch(err =>{
+        rejected(err)
+      })
+  })
     // .catch(err => this.util.presentToast(`${err}`, true, 'bottom', 2100));
   }
 

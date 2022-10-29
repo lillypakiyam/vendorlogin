@@ -10,38 +10,34 @@ import { UtilService } from './service/util.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
- private loggedinUser:User
- private loggedinVendor:Vendor;
+ private loggedinUser:any;
+ private loggedinVendor:Vendor
   constructor(private initUser: InituserService,
               private util: UtilService,
               private navCont: NavController) {
     this.loggedinUser = this.initUser.getUserData()
     this.loggedinVendor = this.initUser.getVendorData()
     console.log(this.loggedinUser)
-    console.log(this.loggedinVendor)
-    // if (this.loggedinUser.id !==null){
-      // if(this.loggedinUser.email === null){
-      //   this.util.goToNew('admin/login')
-      // }else{
-      //   this.util.goToNew('admin/home')
-      // }
-    // }else {
-      // this.util.goToNew('pages/login')
-      // if(this.loggedinVendor.requestEmail !== null){
-      //   this.util.goToNew('pages/password-change')
-      //   // this.util.goToNew('pages/vendor-profile')
-      // }
-    // }
-
-    if (this.loggedinVendor.id !==null){
-      if(this.loggedinVendor.requestEmail === null){
-        this.util.goToNew('pages/login')
+    if (this.loggedinUser.id !==null){
+        if(this.loggedinUser.email === null){
+        this.util.goToNew('admin/login')
       }else{
-        this.util.goToNew('pages/password-change')
+        this.util.goToNew('admin/home')
       }
-    }else{
-      this.util.goToNew('pages/login')
-    }
+     }else{
+        this.util.goToNew('admin/login')
+      }
+    
+
+    // if (this.loggedinVendor.id !==null){
+    //   if(this.loggedinVendor.requestEmail === null){
+    //     this.util.goToNew('pages/login')
+    //   }else{
+    //     this.util.goToNew('pages/vendor-profile')
+    //   }
+    // }else{
+    //   this.util.goToNew('pages/login')
+    // }
     
   }
 

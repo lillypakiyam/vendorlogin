@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-deleted',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeletedPage implements OnInit {
 
-  constructor() { }
+  deleteVendor:any;
+  constructor(private api: ApiService) { 
+    this.api.getalldeleVendor().subscribe(delet =>{
+      console.log(delet)
+      this.deleteVendor=delet
+    console.log(this.deleteVendor)
+  })
+  }
 
   ngOnInit() {
   }

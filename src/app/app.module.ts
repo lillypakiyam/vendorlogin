@@ -30,8 +30,7 @@ import {IonicStorageModule} from '@ionic/storage-angular';
   providers: [ApiService, InituserService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy,},
     FirebaseAuthenticationService,
-    {provide: APP_INITIALIZER, useFactory: InituserServiceFactory, deps: [InituserService], multi: true},
-    {provide: APP_INITIALIZER, useFactory: inituserservicevendorFactory, deps: [InituserService], multi: true}],
+    {provide: APP_INITIALIZER, useFactory: InituserServiceFactory, deps: [InituserService], multi: true},],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
@@ -40,6 +39,7 @@ export function InituserServiceFactory(provider:InituserService){
   return () => provider.load()
 }
 
-export function inituserservicevendorFactory(provider: InituserService){
-  return () => provider.Vendorload()
-}
+// {provide: APP_INITIALIZER, useFactory: inituserservicevendorFactory, deps: [InituserService], multi: true}
+// export function inituserservicevendorFactory(provider: InituserService){
+//   return () => provider.Vendorload()
+// }
